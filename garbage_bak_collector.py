@@ -17,10 +17,10 @@ class GarbageBakCollector:
                     & (file.rsplit('.', 1)[-1] == BAK_EXTENSION):
                 yield file
 
+    @property
     def garbage_bak_files(self):
         all_bak_files = self._get_all_bak_files()
-        for b in all_bak_files:
-            if not os.path.join(
-                    b.rsplit('.', 1)[0], DOC_EXTENSION
-            ) in self.files:
-                yield b
+        return [b for b in all_bak_files
+                if not os.path.join(
+                        b.rsplit('.', 1)[0], DOC_EXTENSION
+                ) in self.files]

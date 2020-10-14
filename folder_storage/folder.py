@@ -12,6 +12,7 @@ class Folder:
     def __repr__(self):
         return self.path
 
+    @property
     def is_empty(self):
         return len(os.listdir(self.path)) == 0
 
@@ -19,7 +20,5 @@ class Folder:
         return [os.path.join(self.path, f) for f in os.listdir(self.path)
                 if os.path.isfile(os.path.join(self.path, f))]
 
-    def folders(self):
-        return [Folder(path=os.path.join(self.path, d))
-                for d in os.listdir(self.path)
-                if os.path.isdir(os.path.join(self.path, d))]
+    def nested_folders(self):
+        return [Folder(path=d) for d, _, _ in os.walk(self.path)]
