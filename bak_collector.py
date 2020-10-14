@@ -1,7 +1,7 @@
 import logging
 import os
 from collections import deque
-from typing import Deque, List
+from typing import List
 
 import asyncio
 
